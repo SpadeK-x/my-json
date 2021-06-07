@@ -114,6 +114,20 @@ static void test_number(){
     TEST_NUMBER(1.234E+10, "1.234E+10");
     TEST_NUMBER(1.234E-10, "1.234E-10");
     TEST_NUMBER(0.0, "1e-10000"); /* must underflow */
+
+    TEST_NUMBER(1.0000000000000002, "1.0000000000000002");
+
+    TEST_NUMBER( 4.9406564584124654e-324, "4.9406564584124654e-324");
+    TEST_NUMBER(-4.9406564584124654e-324, "-4.9406564584124654e-324");
+
+    TEST_NUMBER( 2.2250738585072009e-308, "2.2250738585072009e-308");
+    TEST_NUMBER(-2.2250738585072009e-308, "-2.2250738585072009e-308");
+
+    TEST_NUMBER( 2.2250738585072014e-308, "2.2250738585072014e-308");
+    TEST_NUMBER(-2.2250738585072014e-308, "-2.2250738585072014e-308");
+
+    TEST_NUMBER( 1.7976931348623157e+308, "1.7976931348623157e+308");
+    TEST_NUMBER(-1.7976931348623157e+308, "-1.7976931348623157e+308");
 }
 
 
@@ -122,7 +136,7 @@ static void test_number(){
 
 int main(){
     //test_parse();
-    //test_number();
+    test_number();
     //test_parse_invalid_value();
     printf("%d/%d (%3.2f%%) passed \n",test_pass,test_count,test_pass*100.0/test_count);
     return main_ret;
