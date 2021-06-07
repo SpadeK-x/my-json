@@ -6,10 +6,10 @@ typedef struct{
     const char* json;
 }lept_context;
 
-#define EXPECT(c,ch) do{ assert(*c->json==(ch));  c->json++; }  while(0)//assert(1)åˆ™ç»§ç»­æ‰§è¡Œï¼Œå¦åˆ™å´©æºƒ
+#define EXPECT(c,ch) do{ assert(*c->json==(ch));  c->json++; }  while(0)//assert(1)Ôò¼ÌÐøÖ´ÐÐ£¬·ñÔò±ÀÀ£
 
 /* ws = *(%x20 / %x09 / %x0A / %x0D) */
-static void lept_parse_whitespace(lept_context* c){//åˆ¤æ–­æ˜¯å¦ä¸º ç©ºæ ¼ï¼Œå›žè½¦ï¼Œtabï¼Œå¹¶é‡‡å–æŽªæ–½ï¼ˆè·³è¿‡
+static void lept_parse_whitespace(lept_context* c){//ÅÐ¶ÏÊÇ·ñÎª ¿Õ¸ñ£¬»Ø³µ£¬tab£¬²¢²ÉÈ¡´ëÊ©£¨Ìø¹ý
     const char* p=c->json;
     while(*p==' ' || *p=='\t' || *p=='\n' || *p=='\r')
         p++;
@@ -18,7 +18,7 @@ static void lept_parse_whitespace(lept_context* c){//åˆ¤æ–­æ˜¯å¦ä¸º ç©ºæ ¼ï¼Œå›
 
 /* null  = "null" */
 static int lept_parse_null(lept_context* c,lept_value* v){
-    EXPECT(c,'n');//åˆ¤æ–­æ˜¯å¦ä¸ºnullï¼Œæ˜¯åˆ™ç»§ç»­æ‰§è¡Œï¼ˆè·³è¿‡nullï¼Œå¹¶å°†typeç½®ä¸ºnull
+    EXPECT(c,'n');//ÅÐ¶ÏÊÇ·ñÎªnull£¬ÊÇÔò¼ÌÐøÖ´ÐÐ£¨Ìø¹ýnull£¬²¢½«typeÖÃÎªnull
     if (c->json[0] != 'u' || c->json[1] != 'l' || c->json[2] != 'l')
         return LEPT_PARSE_INVALID_VALUE;
     c->json+=3;
@@ -58,7 +58,7 @@ static int lept_parse_value(lept_context* c,lept_value* v){
 int lept_parse(lept_value* v,const char* json){
     lept_context c;
     int ret;
-    assert(v!=NULL);    
+    assert(v!=NULL);
     c.json=json;
     v->type=LEPT_NULL;
     lept_parse_whitespace(&c);
@@ -74,6 +74,5 @@ lept_type lept_get_type(const lept_value* v){
     assert(v!=NULL);
     return v->type;
 }
-
 
 
